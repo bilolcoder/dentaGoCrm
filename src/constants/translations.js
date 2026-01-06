@@ -22,6 +22,7 @@ export const translations = {
         payments_chart: "To'lovlar",
 
         // Groups
+        patients: "Bemorlar",
         clinic: "Klinika",
         warehouse: "Ombor",
         reports: "Hisobot",

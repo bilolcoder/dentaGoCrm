@@ -4,6 +4,7 @@ import {
     Home, FileText, Calendar, Stethoscope, Send, Users, Settings, BookOpen,
     ChevronDown, ListOrdered, Archive, User, ArrowLeft
 } from 'lucide-react';
+import { BiClinic } from "react-icons/bi";
 import { BsInstagram, BsTelegram } from 'react-icons/bs';
 import { FaYoutube } from "react-icons/fa";
 import { useData } from '../../context/DataProvider';
@@ -20,6 +21,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         sms: false,
         settings: false,
         klinika: false,
+        bemorlar: false,
     });
 
     // Mobilda sidebar ichidagi link bosilganda yopish
@@ -49,27 +51,46 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         if (location.pathname.startsWith('/sms')) setOpenMenus(prev => ({ ...prev, sms: true }));
         if (location.pathname.startsWith('/settings')) setOpenMenus(prev => ({ ...prev, settings: true }));
         if (location.pathname.startsWith('/klinika')) setOpenMenus(prev => ({ ...prev, klinika: true }));
+        if (location.pathname.startsWith('/bemorlar')) setOpenMenus(prev => ({ ...prev, bemorlar: true }));
     }, [location.pathname]);
 
     const navItems = [
         { icon: Home, label: t('main'), route: "/dashboard", type: "link" },
-        { icon: ListOrdered, label: t('orders_bts'), route: "/orders", type: "link" },
+        // { icon: ListOrdered, label: t('orders_bts'), route: "/orders", type: "link" },
         // { icon: Calendar, label: t('taqvim'), route: "/taqvim", type: "link" }, taqvim olib tashlandi
-        { icon: Users, label: t('navbat'), route: "/queue", type: "link" },
-        { icon: User, label: t('my_results'), route: "/result", type: "link" },
-        { icon: BookOpen, label: t('dental_courses'), route: "/courses", type: "link" },
         {
             icon: Stethoscope,
+            label: t('patients'),
+            route: "/bemorlar",
+            type: "group",
+            name: "bemorlar",
+            subItems: [
+                { label: t('navbat'), route: "/queue", type: "link" },
+                { label: t('treatments'), route: "/klinika/davolashlar" },
+                { label: t('services_card'), route: "/klinika/xizmatlar-card" },
+                // { label: t('staff'), route: "/klinika/xodimlar" },
+                // { label: t('services_card'), route: "/klinika/xizmatlar-card" },
+                // { label: t('service_categories'), route: "/klinika/xizmatlar-kategoriyalari" },
+                // { label: t('services'), route: "/klinika/xizmatlar" },
+                // { label: t('treatment_planning'), route: "/klinika/davolashni-rejalashtirish" },
+                // { label: t('patients'), route: "/klinika/bemorlar" },
+                // { label: t('debt_treatments'), route: "/klinika/qarzdor-davolashlar" },
+                // { label: t('clinic_data'), route: "/klinika/malumotlar" },
+            ]
+        },
+        { icon: User, label: t('my_results'), route: "/result", type: "link" },
+        {
+            icon: BiClinic,
             label: t('clinic'),
             route: "/klinika",
             type: "group",
             name: "klinika",
             subItems: [
                 { label: t('staff'), route: "/klinika/xodimlar" },
-                { label: t('services_card'), route: "/klinika/xizmatlar-card" },
-                { label: t('service_categories'), route: "/klinika/xizmatlar-kategoriyalari" },
-                { label: t('services'), route: "/klinika/xizmatlar" },
-                { label: t('treatments'), route: "/klinika/davolashlar" },
+                // { label: t('services_card'), route: "/klinika/xizmatlar-card" },
+                // { label: t('service_categories'), route: "/klinika/xizmatlar-kategoriyalari" },
+                // { label: t('services'), route: "/klinika/xizmatlar" },
+                // { label: t('treatments'), route: "/klinika/davolashlar" },
                 { label: t('treatment_planning'), route: "/klinika/davolashni-rejalashtirish" },
                 { label: t('patients'), route: "/klinika/bemorlar" },
                 { label: t('debt_treatments'), route: "/klinika/qarzdor-davolashlar" },
@@ -83,6 +104,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             type: "group",
             name: "ombor",
             subItems: [
+                { label: t('orders_bts'), route: "/orders", type: "link" },
                 { label: t('documents'), route: "/storage/documents" },
                 { label: t('products'), route: "/storage/products" },
                 { label: t('categories'), route: "/storage/categories" },
@@ -132,6 +154,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 { label: t('announcements'), route: "/settings/announcements" },
             ]
         },
+        { icon: BookOpen, label: t('dental_courses'), route: "/courses", type: "link" },
     ];
 
     const renderNavItem = (item, index) => {
