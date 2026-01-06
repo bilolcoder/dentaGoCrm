@@ -33,7 +33,7 @@ export const translations = {
 
         // Clinic Submenu
         staff: "Xodimlar",
-        services_card: "Xizmatlar (Card)",
+        services_card: "Xizmatlar",
         service_categories: "Xizmatlar kategoriyalari",
         services: "Xizmatlar",
         treatments: "Davolashlar",

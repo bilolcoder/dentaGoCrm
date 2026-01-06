@@ -4,6 +4,7 @@ import {
     Home, FileText, Calendar, Stethoscope, Send, Users, Settings, BookOpen,
     ChevronDown, ListOrdered, Archive, User, ArrowLeft
 } from 'lucide-react';
+import { IoMedical } from "react-icons/io5";
 import { BiClinic } from "react-icons/bi";
 import { BsInstagram, BsTelegram } from 'react-icons/bs';
 import { FaYoutube } from "react-icons/fa";
@@ -56,6 +57,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
     const navItems = [
         { icon: Home, label: t('main'), route: "/dashboard", type: "link" },
+        { icon: User, label: t('my_results'), route: "/result", type: "link" },
         // { icon: ListOrdered, label: t('orders_bts'), route: "/orders", type: "link" },
         // { icon: Calendar, label: t('taqvim'), route: "/taqvim", type: "link" }, taqvim olib tashlandi
         {
@@ -78,9 +80,8 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 // { label: t('clinic_data'), route: "/klinika/malumotlar" },
             ]
         },
-        { icon: User, label: t('my_results'), route: "/result", type: "link" },
         {
-            icon: BiClinic,
+            icon: IoMedical,
             label: t('clinic'),
             route: "/klinika",
             type: "group",
